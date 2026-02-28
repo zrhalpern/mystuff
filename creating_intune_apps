@@ -1,1 +1,3 @@
+# https://github.com/Microsoft/Microsoft-Win32-Content-Prep-Tool
+
 IntuneWinAppUtil -c "absolute_path" -s "source_file" -o "absolute_path"
