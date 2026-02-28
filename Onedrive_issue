@@ -1,5 +1,5 @@
-# Using intunes Scripts and remediations feature took initiative to resolve a long standing issue in user environment enabling onedrive and preventing user data loss.
-# Also used and assiged out intune's device configuration policy "Start OneDrive automatically when signing in to Windows (User) so that onedrive will automatically start.
+# Proactively engineered an automated resolution for a critical data integrity risk by leveraging Intune Scripts and Remediations to enforce OneDrive deployment across the enterprise.
+# Enhanced data protection protocols by modifying Intune configuration policies to mandate the "Start OneDrive automatically when signing in to Windows (User)" setting, ensuring consistent synchronization and preventing potential data loss.
 
   onedrive_detection.ps1
     # Detection script for proactive remediation of onedrive
