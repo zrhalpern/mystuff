@@ -1,0 +1,11 @@
+# Using intunes Scripts and remediations feature took initiative to resolve a long standing issue in user environment enabling onedrive and preventing user data loss.
+
+onedrive_detection.ps1
+# Detection script for proactive remediation of onedrive
+# Detects if OneDrive sync is disabled via policy
+# HKLM\Software\Policies\Microsoft\Windows\OneDrive\DisableFileSyncNGSC
+
+$RegPath = "HKLM:\Software\Policies\Microsoft\Windows\OneDrive"
+$ValueName = "DisableFileSyncNGSC"
+
+$Value = (Get-ItemProperty -Path $RegPath -Name $ValueName -ErrorAction
