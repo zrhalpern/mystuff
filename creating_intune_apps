@@ -1,0 +1,1 @@
+IntuneWinAppUtil -c "absolute_path" -s "source_file" -o "absolute_path"
