@@ -1,11 +1,29 @@
 # Using intunes Scripts and remediations feature took initiative to resolve a long standing issue in user environment enabling onedrive and preventing user data loss.
+# Also used and assiged out intune's device configuration policy "Start OneDrive automatically when signing in to Windows (User) so that onedrive will automatically start.
 
-onedrive_detection.ps1
-# Detection script for proactive remediation of onedrive
-# Detects if OneDrive sync is disabled via policy
-# HKLM\Software\Policies\Microsoft\Windows\OneDrive\DisableFileSyncNGSC
+  onedrive_detection.ps1
+    # Detection script for proactive remediation of onedrive
+    # Detects if OneDrive sync is disabled via policy
+    # HKLM\Software\Policies\Microsoft\Windows\OneDrive\DisableFileSyncNGSC
 
-$RegPath = "HKLM:\Software\Policies\Microsoft\Windows\OneDrive"
-$ValueName = "DisableFileSyncNGSC"
+    $RegPath = "HKLM:\Software\Policies\Microsoft\Windows\OneDrive"
+    $ValueName = "DisableFileSyncNGSC"
 
-$Value = (Get-ItemProperty -Path $RegPath -Name $ValueName -ErrorAction
+    # Assigns the $Value the $ValueName value. 
+    $Value = (Get-ItemProperty -Path $RegPath -Name $ValueName -ErrorAction SilentlyContinue).$ValueName
+
+    # If $Value is equal to 1 (meaning onedrive is disabled) remediation script will run. 
+    if ($Value -eq 1) {
+         Write-Output "DisableFileSyncNGSC is set to 1. Issue detected."
+         exit 1
+    }
+
+    Write-Output "DisableFileSyncNGSC is set to 0. No issue detected."
+    exit 0
+
+  onedrive_remediation.ps1
+    $RegPath = "HKLM:\Software\Policies\Microsoft\Windows\OneDrive"
+    $ValueName = "DisableFileSyncNGSC"
+    $Value = 0
+
+    Set-ItemProperty -Path $RegPath -Name $Valuename -Value $Value -Type DWord -Force
