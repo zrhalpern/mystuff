@@ -1,3 +1,8 @@
+# Manage Outlook Delegates Using PowerShell 
+# Provisioned calendar delegates for leadership team to enabled executive assistants to better support the C-suite ensuring a seamless and secure scheduling workflow. 
+# Using the Add-MailboxFolderPermission command, I granted executive assistants Editor permissions while simultaneously enabling the Delegate and CanViewPrivateItems flags.
+
+
 Connect-ExchangeOnline -UserPrincipalName "my_email@domain.com"
 Get-MailboxFolderPermission -Identity "target_user@domain.com" # To see current access rights and for which users.
 Add-MailBoxFolderPermission -Identity "target_user@domain.com:\Calendar" -User "user_who_needs_access@domain.com" -AccessRights Editor -SharingPermissionFlags Delegate,CanViewPrivateItems
