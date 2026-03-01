@@ -1,4 +1,4 @@
-# Proactively engineered an automated resolution for a critical data integrity risk by leveraging Intune Scripts and Remediations to enforce OneDrive deployment across the enterprise.
+# Proactively engineered an automated resolution for a common issue that resulted in lost user data leveraging Intune Scripts and Remediations to enforce OneDrive deployment across the enterprise.
 # Enhanced data protection protocols by modifying Intune configuration policies to mandate the "Start OneDrive automatically when signing in to Windows (User)" setting, ensuring consistent synchronization and preventing potential data loss.
 
   onedrive_detection.ps1
