@@ -1,0 +1,16 @@
+# Example of how to migrate a GPO using PowerShell and Intune Win32 app.
+
+$Key          = "Regitry\Path\To\Location"
+$Value        = "Reg_Key"
+$Data         = "value_of_key"
+
+$regDirectory = "Registry::HKCU"
+$strType      = "DWord"
+
+Try {
+    If (!(Get-Item ($RegDirectory + "\" + $Key) -ErrorAction SilentlyContinue)) { New-Item -Path ($regDirectory + "\" + $Key) -ErrorAction SilentlyContinue -Force | out-null }
+    Set-ItemProperty -Path ($regDirectory + "\" + $Key) -Name $Value -Value $Data -Type $strType
+}
+Catch {
+      Write-Host $_.Exception
+}
