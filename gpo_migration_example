@@ -1,15 +1,25 @@
 # Example of how to migrate a GPO using PowerShell and Intune Win32 app.
 
-$Key          = "Regitry\Path\To\Location"
-$Value        = "Reg_Key"
-$Data         = "value_of_key"
+# Path to reg key we want migrated
+$Key1          = "Registry\Path\To\Location"
+$Value1        = "Reg_Key"
+$Data1         = 1
 
-$regDirectory = "Registry::HKCU"
-$strType      = "DWord"
+# The root directory
+$regDirectory  = "Registry::HKCU"
+$strType       = "DWord"
+
+# The detection method
+$Key2          =  "Registry\Path\To\Location"
+$Value2        = "MyStuff"
+$Data2         = 1
 
 Try {
-    If (!(Get-Item ($RegDirectory + "\" + $Key) -ErrorAction SilentlyContinue)) { New-Item -Path ($regDirectory + "\" + $Key) -ErrorAction SilentlyContinue -Force | out-null }
-    Set-ItemProperty -Path ($regDirectory + "\" + $Key) -Name $Value -Value $Data -Type $strType
+    If (!(Get-Item ($RegDirectory + "\" + $Key1) -ErrorAction SilentlyContinue)) { New-Item -Path ($regDirectory + "\" + $Key1) -ErrorAction SilentlyContinue -Force | out-null }
+    If (!(Get-Item ($RegDirectory + "\" + $Key2) -ErrorAction SilentlyContinue)) { New-Item -Path ($regDirectory + "\" + $Key2) -ErrorAction SilentlyContinue -Force | out-null }
+    
+    Set-ItemProperty -Path ($regDirectory + "\" + $Key1) -Name $Value -Value $Data1 -Type $strType
+    Set-ItemProperty -Path ($regDirectory + "\" + $Key2) -Name $Value -Value $Data2 -Type $strType
 }
 Catch {
       Write-Host $_.Exception
