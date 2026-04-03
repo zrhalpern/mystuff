@@ -1,6 +1,7 @@
 # Intune > Devices > Configuration > Create "New Policy" > Platform = "Windows 10 and later", profile type = "Settings catalog" > "Sets application default dept name" 
 # Setting is called "Application defaults" and then select "Default Associations Configuration"
 # Find progID's in regedit.msc HKEY_CLASSES_ROOT or export current config in command prompt with: dism /online /export-defaultappassociations:C:\DefaultApps.xml
+# Microsoft documentation https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-applicationdefaults
 
 # Step 1 create XML file
 <DefaultAssociations Version="1">
