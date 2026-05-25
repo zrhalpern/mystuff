@@ -18,5 +18,5 @@
 # Step 3 put the encoded file into the device configuration policy.
 
 # Other notes
-# 1. Sgugested="True" means the defaults are not enforced and can be changed.
+# 1. Suggested="True" means the defaults are not enforced and can be changed.
 # 2. "Version="1" allows for version control
