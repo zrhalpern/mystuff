@@ -16,3 +16,7 @@
 
 # Step 2 base64 encode https://www.base64encode.org/
 # Step 3 put the encoded file into the device configuration policy.
+
+# Other notes
+# 1. Sgugested="True" means the defaults are not enforced and can be changed.
+# 2. "Version="1" allows for version control
