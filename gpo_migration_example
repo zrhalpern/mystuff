@@ -1,4 +1,4 @@
-# Example of how to migrate a GPO using PowerShell and Intune Win32 app.
+# Example of how to migrate a GPO registry key using PowerShell and Intune Win32 app.
 
 # Path to reg key we want migrated
 $Key1          = "Registry\Path\To\Location"
