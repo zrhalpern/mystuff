@@ -1,0 +1,47 @@
+# Using PowerShell and Intune scripts and remediations feature created a read-only detection script to identify Grammarly installs in the environment
+$GrammalyFound = $false
+
+# Check Grammarly desktop installation
+$GrammarlyPath = "$env:LOCALAPPDATA\Grammarly"
+
+if (Test-Path $GrammarlyPath) {
+Write-Output "Found Grammarly: $GrammarlyPath"
+$GrammarlyFound = $true
+}
+
+# Check Chrome extension
+$ChromeExtensionPath = "$env:LOCALAPPDATA\Google\Chrome\User Data\Default\Extensions\kbfnbcaeplbcioakkpcpgfkobkghlhen"
+
+if (Test-Path $ChromeExtensionPath) {
+Write-Output "Found Grammarly Chrome Extension: $ChromeExtensionPath"
+$GrammarlyFound = $true
+}
+
+# Check Edge extension
+$EdgeExtensionPath = "$env:LOCALAPPDATA\Microsoft\Edge\User Data\Default\Extensions\cnlefmmeadmemmdciolhbnfeacpdfbkd"
+
+if (Test-Path $EdgeExtensionPath) {
+Write-Output "Found Grammarly Edge Extension: $EdgeExtensionPath"
+$GrammarlyFound = $true
+}
+
+# Check current user uninstall registry
+$Apps = Get-ItemProperty `
+"HKCU:\Software\microsoft\Windows\CurrentVersion\Uninstall\*" `
+-ErrorAction SilentlyContinue |
+Where-Object { $_.DisplayName -like "*Grammarly*" }
+
+if ($Apps) {
+Write-Output "Found Grammarly in user uninstall registry."
+$GrammarlyFound = $true
+}
+
+# Found or not found logic for detection script
+if ($GrammylFound) {
+Write-Output "Grammarly detected"
+Exit 1
+}
+else {
+Write-Output "Grammrly not found"
+Exit 0
+}
